@@ -8,7 +8,7 @@ const express = require('express')
 const Hubspot = require('hubspot')
 const formidable = require('formidable')
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
 const CLIENT_ID = process.env.HUBSPOT_CLIENT_ID
 const CLIENT_SECRET = process.env.HUBSPOT_CLIENT_SECRET
@@ -115,15 +115,15 @@ app.use('/oauth-callback', async (req, res) => {
   // Get OAuth 2.0 Access Token and Refresh Tokens
   // POST /oauth/v1/token
   // https://developers.hubspot.com/docs/methods/oauth2/get-access-and-refresh-tokens
-  debug('Retrieving access token by code:', code)
+  console.log('Retrieving access token by code:', code)
   tokenStore = await hubspot.oauth.getAccessToken({ code })
-  debug('Retrieving access token result:', tokenStore)
+  console.log('Retrieving access token result:', tokenStore)
   tokenStore.updated_at = Date.now()
 
   // Set token for the
   // https://www.npmjs.com/package/hubspot
   hubspot.setAccessToken(tokenStore.access_token)
-  res.redirect('/')
+  res.redirect('https://jupita.io/')
 })
 
 app.get('/login', (req, res) => {

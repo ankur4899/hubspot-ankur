@@ -7,7 +7,7 @@
   "description": "hubspot-node client sample applications",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/if-env NODE_ENV=development && nodemon --delay 3 index.js || node index.js",
+    "start": "node index.js",
     "lint": "npm run prettier && npm run eslint",
     "eslint": "./node_modules/.bin/eslint .. --fix",
     "prettier": "./node_modules/.bin/prettier --write index.js ./js/**/*.js"
